@@ -5,6 +5,7 @@
  * Copyright (c) 2019 Chrudos Vorlicek
  * for more informations about license see LICENSE file
  */
+namespace WfsProxy;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;

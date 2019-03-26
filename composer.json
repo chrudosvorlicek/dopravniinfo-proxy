@@ -1,5 +1,5 @@
 {
-    "name": "chrudos/dopravniinfo-proxy",
+    "name": "chrudosvorlicek/dopravniinfo-proxy",
     "description": "Proxy server for accessing data from dopravniinfo.cz",
     "type": "library",
     "license": "MIT License",
@@ -9,8 +9,15 @@
             "email": "chrudos.vorlicek@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
+        "php": ">=7.0",
         "guzzlehttp/guzzle": "^6.3",
         "nette/utils": "^3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "WfsProxy": "src/"
+        }
     }
 }
