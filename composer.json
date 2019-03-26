@@ -1,0 +1,16 @@
+{
+    "name": "chrudos/dopravniinfo-proxy",
+    "description": "Proxy server for accessing data from dopravniinfo.cz",
+    "type": "library",
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "Chrudos Vorlicek",
+            "email": "chrudos.vorlicek@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "nette/utils": "^3.0"
+    }
+}
