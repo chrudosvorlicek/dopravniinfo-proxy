@@ -78,6 +78,7 @@ class JsonpProxy
             'id' => $feature->id,
             'properties' => $feature->a
         ];
+        $result['properties']['type'] = $type;
         switch ($type) {
             case 'Kamery':
             case 'Meteo':
