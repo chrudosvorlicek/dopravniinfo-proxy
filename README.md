@@ -4,7 +4,7 @@ Proxy server for processing request to dopravniinfo
 ## Installation
 
 * add repository to composer.json
-{
+```{
     "repositories": [
         {
             "type": "vcs",
@@ -14,5 +14,6 @@ Proxy server for processing request to dopravniinfo
     "require": {
     }
 }
+```
 
-* call composer require chrudosvorlicek/dopravniinfo-proxy dev-master
+* call `composer require chrudosvorlicek/dopravniinfo-proxy dev-master`
