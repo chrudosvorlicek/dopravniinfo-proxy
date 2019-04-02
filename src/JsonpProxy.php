@@ -5,12 +5,14 @@
  * Copyright (c) 2019 Chrudos Vorlicek
  * for more informations about license see LICENSE file
  */
+
 namespace WfsProxy;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use Nette\Utils\Json;
 use Nette\Utils\Strings;
+use WfsProxy\Polyline;
 
 /**
  * @author Chrudos Vorlicek <chrudos.vorlicek@gmail.com>
@@ -56,9 +58,6 @@ class JsonpProxy
         $cleanBody = Strings::before(Strings::after($body, "$this->callback("), ')', -1);
         foreach (Json::decode($cleanBody) as $type) {
             foreach ($type->featureList as $feature) {
-                if($type->id === 'TL')  {
-                    continue;
-                }
                 $geojsonResponse[] = $this->prepareFeature($feature, $type->id);
             }
         }
@@ -95,15 +94,31 @@ class JsonpProxy
                 break;
             case 'TL':
                 $result['geometry'] = [
-                    'type' => 'Linestring',
-                    'coordinates' => $feature->g
+                    'type' => 'LineString',
+                    'coordinates' => $this->formatLine($feature->g)
                 ];
                 break;
             default :
-                print_r($feature);
                 throw new Exception("Not implemented for type '$type'.");
         }
         return $result;
+    }
+
+    private function formatLine(string $geometry)
+    {
+        $coordinates = [];
+        foreach (Polyline::decode($geometry) as $item) {
+            if ($item < -1e5) { // remove irrelevant data
+                $coordinates[] = $item;
+            }
+        }
+        $line = [];
+        foreach ($coordinates as $key => $coordinate) {
+            if (!($key % 2)) {
+                $line[] = [$coordinate, $coordinates[$key + 1]];
+            }
+        }
+        return $line;
     }
 
 }
