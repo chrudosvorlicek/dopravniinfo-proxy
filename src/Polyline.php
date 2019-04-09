@@ -1,19 +1,19 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This file is part of project JsonpProxy
+ * Copyright (c) 2019 Chrudos Vorlicek
+ * for more informations about license see LICENSE file
  */
 
 namespace WfsProxy;
 
 /**
- * Description of PolylineDopravniInfo
- *
- * @author chrudos
+ * @author Chrudos Vorlicek <chrudos.vorlicek@gmail.com>
  */
 class Polyline extends \Polyline
 {
+
     protected static $precision = 0;
+
 }

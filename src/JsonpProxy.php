@@ -12,6 +12,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use Nette\Utils\Json;
 use Nette\Utils\Strings;
+use WfsProxy\LayerIds;
 use WfsProxy\Polyline;
 
 /**
@@ -80,19 +81,20 @@ class JsonpProxy
         ];
         $result['properties']['type'] = $type;
         switch ($type) {
-            case 'Kamery':
-            case 'Meteo':
-            case 'PocasiOblast':
-            case 'SjizdnostKomunikace':
-            case 'TI':
-            case 'TIU':
-            case 'ZPI':
+            case LayerIds::KAMERY:
+            case LayerIds::MERENI:
+            case LayerIds::METEO:
+            case LayerIds::POCASI_OBLAST:
+            case LayerIds::SJIZDNOST:
+            case LayerIds::TI:
+            case LayerIds::TIU:
+            case LayerIds::ZPI:
                 $result['geometry'] = [
                     'type' => 'Point',
                     'coordinates' => [$feature->x, $feature->y]
                 ];
                 break;
-            case 'TL':
+            case LayerIds::TL:
                 $result['geometry'] = [
                     'type' => 'LineString',
                     'coordinates' => $this->formatLine($feature->g)
